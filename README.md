@@ -214,6 +214,7 @@ Citizen asks chatbot → /api/chat → Gemini → Response
 ---
 
 ## Demo Video
+https://drive.google.com/file/d/1l9YjKho3gQA-ZCzNhH3MjRTY54y-kO4S/view?usp=drivesdk
 
 ---
 
