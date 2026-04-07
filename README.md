@@ -186,25 +186,17 @@ Add project screenshots:
 
 ![Screenshot1](./images/citizen1.jpeg)
 ![Screenshot2](./images/dash1.jpeg)
-
-./images/citizen1.jpeg
-
-
-
-./images/dispensery.jpeg
+![Screenshot3](./images/dispensery.jpeg)
+![Screenshot4](./images/docpanel.jpeg)
 
 
 
-
-
-
-./images/docpanel.jpeg
 
 ---
 
 ## Demo Video
 
-<video src="https://github.com/24525Bilal/repo/assets/UUID" width="500" controls></video>
+<video src="https://drive.google.com/file/d/1l9YjKho3gQA-ZCzNhH3MjRTY54y-kO4S/view?usp=sharing" width="500" controls></video>
 
 ---
 
@@ -250,5 +242,6 @@ Add project screenshots:
    - Admin login: [http://localhost:3000/login](http://localhost:3000/login) → `admin` / `admin`
    - Dashboard: [http://localhost:3000/dashboard](http://localhost:3000/dashboard)
    - Doctor portal: [http://localhost:3000/doctor](http://localhost:3000/doctor)
-#   b u i l d - w i t h - a i - c h n - v o i d  
+#   b u i l d - w i t h - a i - c h n - v o i d 
+ 
  
