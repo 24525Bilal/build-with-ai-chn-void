@@ -97,6 +97,11 @@ Firebase SDK operations used:
 
 ### Proof of Google AI Usage
 
+![Screenshot1](./proof/ai.jpg)
+![Screenshot2](./proof/anti.jpg)
+![Screenshot3](./proof/firebase.jpg)
+![Screenshot4](./proof/studio.jpg)
+
 
 ---
 
