@@ -97,7 +97,6 @@ Firebase SDK operations used:
 
 ### Proof of Google AI Usage
 
-*(Screenshots to be attached here — save files in the `/proof` folder)*
 
 ---
 
