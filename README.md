@@ -2,9 +2,7 @@
 
 ## Problem Statement
 
-Traditional public health surveillance systems are slow, fragmented, and reactive. Disease outbreaks are typically detected only after hospitals individually report data through bureaucratic chains — resulting in dangerous delays that allow outbreaks to spread unchecked. There is no unified, real-time system that aggregates clinical reports from multiple hospitals, identifies emerging patterns, and delivers immediate, actionable alerts to both health authorities and citizens.
-
-HealthSentinel AI solves this problem by providing a unified, AI-powered real-time outbreak detection and public alerting platform.
+Traditional public health surveillance systems are slow, fragmented, and reactive. Disease outbreaks are typically detected only after hospitals individually report data through bureaucratic chains — resulting in dangerous delays that allow outbreaks to spread unchecked. There is no unified, real-time system that aggregates clinical reports from multiple hospitals, identifies emerging patterns, and delivers immediate, actionable alerts to both health authorities and citizens. HealthSentinel AI solves this problem by providing a unified, AI-powered real-time outbreak detection and public alerting platform.
 
 ---
 
@@ -42,14 +40,14 @@ HealthSentinel AI is a full-stack Next.js web application that aggregates anonym
 
 ### Tools / Models Used
 
-| Google Product                                                           | How It Is Used                                                       |
-| ------------------------------------------------------------------------ | -------------------------------------------------------------------- |
-| **Google Gemini 2.5 Flash** (`gemini-2.5-flash`)                 | Epidemiological outbreak analysis via `/api/analyze`               |
-| **Google Gemini 2.5 Flash** (`gemini-2.5-flash`)                 | AI Health Chatbot responses via `/api/chat`                        |
-| **Google Gemini SDK** (`@google/generative-ai`)                  | Official Node.js SDK used in both API routes                         |
-| **Google Firebase Firestore**                                      | Primary database for clinical reports, resources, and rare medicines |
-| **Google Firebase SDK** (`firebase/app`, `firebase/firestore`) | Database reads, writes, and queries                                  |
-| **Google AI Studio**                                               | Source for the Gemini API key (`aistudio.google.com`)              |
+| Google Product | How It Is Used |
+|---|---|
+| **Google Gemini 2.5 Flash** (`gemini-2.5-flash`) | Epidemiological outbreak analysis via `/api/analyze` |
+| **Google Gemini 2.5 Flash** (`gemini-2.5-flash`) | AI Health Chatbot responses via `/api/chat` |
+| **Google Gemini SDK** (`@google/generative-ai`) | Official Node.js SDK used in both API routes |
+| **Google Firebase Firestore** | Primary database for clinical reports, resources, and rare medicines |
+| **Google Firebase SDK** (`firebase/app`, `firebase/firestore`) | Database reads, writes, and queries |
+| **Google AI Studio** | Source for the Gemini API key (`aistudio.google.com`) |
 
 ### How Google AI Was Used
 
@@ -62,13 +60,22 @@ When the Dashboard or Citizen Portal loads, it sends all recent clinical reports
 - Constructs a detailed epidemiologist system prompt with all anonymized report data
 - Instructs Gemini to return a **strict JSON response** with:
   - `outbreak_detected` (true/false)
-  - `disease_name`, `confidence_percent`, `severity_level`
-  - `total_suspected_cases`, `affected_areas`, `highest_risk_area`
-  - `transmission_mode`, `incubation_period`, `at_risk_groups`
-  - `predicted_trend`, `estimated_new_cases_next_week`
+  - `disease_name`
+  - `confidence_percent`
+  - `severity_level`
+  - `total_suspected_cases`
+  - `affected_areas`
+  - `highest_risk_area`
+  - `transmission_mode`
+  - `incubation_period`
+  - `at_risk_groups`
+  - `predicted_trend`
+  - `estimated_new_cases_next_week`
   - `recommended_actions` (for health authorities)
-  - `citizen_precautions`, `medicine_requirements`
-  - `water_sanitation_advisory`, `summary`
+  - `citizen_precautions`
+  - `medicine_requirements`
+  - `water_sanitation_advisory`
+  - `summary`
 
 #### 2. AI Health Chatbot (`/api/chat`)
 
@@ -97,44 +104,59 @@ Firebase SDK operations used:
 
 ### Proof of Google AI Usage
 
-*(Screenshots to be attached here — save files in the `/proof` folder)*
+![Screenshot1](./proof/ai.jpg)
+![Screenshot2](./proof/anti.jpg)
+![Screenshot3](./proof/firebase.jpg)
+![Screenshot4](./proof/studio.jpg)
 
 ---
 
 ## Application Architecture
 
-```
+```txt
 Routes:
-  /            →  Redirects to /citizen (public home)
-  /citizen     →  Citizen Health Portal (public)
-  /login       →  Admin Login Page (admin/admin)
-  /dashboard   →  Admin Dashboard (protected, session auth)
-  /doctor      →  Doctor Portal (protected, linked from dashboard)
+/
+→ Redirects to /citizen (public home)
+
+/citizen
+→ Citizen Health Portal (public)
+
+/login
+→ Admin Login Page (admin/admin)
+
+/dashboard
+→ Admin Dashboard (protected, session auth)
+
+/doctor
+→ Doctor Portal (protected, linked from dashboard)
 
 API Routes:
-  POST /api/analyze  →  Gemini AI outbreak analysis
-  POST /api/chat     →  Gemini AI chatbot
+POST /api/analyze
+→ Gemini AI outbreak analysis
+
+POST /api/chat
+→ Gemini AI chatbot
 
 Data Flow:
-  Doctor submits report → Firebase Firestore
-  Dashboard/Citizen page loads → Fetch Firestore reports → Send to Gemini → Display analysis
-  Citizen asks chatbot → /api/chat → Gemini → Response
+Doctor submits report → Firebase Firestore
+Dashboard/Citizen page loads → Fetch Firestore reports → Send to Gemini → Display analysis
+Citizen asks chatbot → /api/chat → Gemini → Response
 ```
 
 ---
 
 ## Tech Stack
 
-| Technology                          | Purpose                                          |
-| ----------------------------------- | ------------------------------------------------ |
-| **Next.js 16**                | Full-stack React framework (App Router)          |
-| **Google Gemini 2.5 Flash**   | AI outbreak analysis and chatbot                 |
-| **@google/generative-ai**     | Official Google AI SDK                           |
-| **Google Firebase Firestore** | Real-time NoSQL database                         |
-| **Firebase SDK v12**          | Database read/write operations                   |
-| **Recharts**                  | Interactive symptom trend charts                 |
-| **Lucide React**              | Icon library                                     |
-| **Vanilla CSS**               | Styling (globals.css, dark theme, glassmorphism) |
+| Technology | Purpose |
+|---|---|
+| **Next.js 16** | Full-stack React framework (App Router) |
+| **Google Gemini 2.5 Flash** | AI outbreak analysis and chatbot |
+| **@google/generative-ai** | Official Google AI SDK |
+| **Google Firebase Firestore** | Real-time NoSQL database |
+| **Firebase SDK v12** | Database read/write operations |
+| **Recharts** | Interactive symptom trend charts |
+| **Lucide React** | Icon library |
+| **Vanilla CSS** | Styling (globals.css, dark theme, glassmorphism) |
 
 ---
 
@@ -180,53 +202,38 @@ Data Flow:
 - Credentials: `admin` / `admin`
 - Sets `sessionStorage` flag and redirects to `/dashboard`
 
-## Screenshots
+---
 
-Add project screenshots:
+## Screenshots
 
 ![Screenshot1](./images/citizen1.jpeg)
 ![Screenshot2](./images/dash1.jpeg)
-
-./images/citizen1.jpeg
-
-
-
-./images/dispensery.jpeg
-
-
-
-
-
-
-./images/docpanel.jpeg
+![Screenshot3](./images/dispensery.jpeg)
+![Screenshot4](./images/docpanel.jpeg)
 
 ---
 
 ## Demo Video
-
-<video src="https://github.com/24525Bilal/repo/assets/UUID" width="500" controls></video>
-
----
+https://drive.google.com/file/d/1l9YjKho3gQA-ZCzNhH3MjRTY54y-kO4S/view?usp=drivesdk
 
 ---
 
 ## Installation Steps
 
 1. **Install dependencies**
-
    ```bash
    npm install
    ```
+
 2. **Configure environment variables**
    Copy `.env.example` to `.env.local` and fill in your credentials:
-
    ```bash
    cp .env.example .env.local
    ```
-   Required variables:
 
-   ```
-   NEXT_PUBLIC_GEMINI_API_KEY=      # From aistudio.google.com
+   Required variables:
+   ```env
+   NEXT_PUBLIC_GEMINI_API_KEY=
    NEXT_PUBLIC_FIREBASE_API_KEY=
    NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=
    NEXT_PUBLIC_FIREBASE_PROJECT_ID=
@@ -234,21 +241,22 @@ Add project screenshots:
    NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=
    NEXT_PUBLIC_FIREBASE_APP_ID=
    ```
-3. **Seed Firestore with sample data (optional)**
 
+3. **Seed Firestore with sample data (optional)**
    ```bash
    node scripts/seed-firestore.mjs
    ```
-4. **Run locally**
 
+4. **Run locally**
    ```bash
    npm run dev
    ```
-   Open [http://localhost:3000](http://localhost:3000)
 
-   - Public portal: [http://localhost:3000/citizen](http://localhost:3000/citizen)
-   - Admin login: [http://localhost:3000/login](http://localhost:3000/login) → `admin` / `admin`
-   - Dashboard: [http://localhost:3000/dashboard](http://localhost:3000/dashboard)
-   - Doctor portal: [http://localhost:3000/doctor](http://localhost:3000/doctor)
-#   b u i l d - w i t h - a i - c h n - v o i d  
- 
+Open [http://localhost:3000](http://localhost:3000)
+
+- Public portal: [http://localhost:3000/citizen](http://localhost:3000/citizen)
+- Admin login: [http://localhost:3000/login](http://localhost:3000/login) → `admin` / `admin`
+- Dashboard: [http://localhost:3000/dashboard](http://localhost:3000/dashboard)
+- Doctor portal: [http://localhost:3000/doctor](http://localhost:3000/doctor)
+
+# build-with-ai-chn-void
